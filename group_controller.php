@@ -59,7 +59,14 @@ function group_controller() {
          // group/createdebug?name=test&description=test
         if ($route->action == "createdebug") {
             $route->format = "json";
-            $result = $group->create($session["userid"], $_GET['name'], $_GET['description'], $_GET['organization'], $_GET['area'], $_GET['visibility'], $_GET['access']);
+            $groupname = $_GET['name'];
+            $groupdescription = $_GET['description'];
+            $grouporganization = $_GET['organization']; 
+            $grouparea = $_GET['area'];
+            $groupvisibility = $_GET['visibility'];
+            $groupaccess = $_GET['access'];
+            echo $groupname." -- ".$groupdescription;
+            $result = $group->create($session["userid"], $groupname , $groupdescription , $grouporganization, $grouparea, $groupvisibility, $groupaccess);
         } 
       
       
