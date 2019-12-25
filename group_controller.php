@@ -54,21 +54,7 @@ function group_controller() {
                 return view("Modules/group/group_view.php", array('task_support' => false));
             else
                 return view("Modules/group/group_view.php", array('task_support' => true));
-        }    
-      
-         // group/createdebug?name=test&description=test
-        if ($route->action == "createdebug") {
-            $route->format = "json";
-            $groupname = $_GET['name'];
-            $groupdescription = $_GET['description'];
-            $grouporganization = $_GET['organization']; 
-            $grouparea = $_GET['area'];
-            $groupvisibility = $_GET['visibility'];
-            $groupaccess = $_GET['access'];
-            echo $groupname." -- ".$groupdescription;
-            $result = $group->create($session["userid"], $groupname , $groupdescription , $grouporganization, $grouparea, $groupvisibility, $groupaccess);
-        } 
-      
+        }
       
         // group/create?name=test&description=test
         if ($route->action == "create") {
