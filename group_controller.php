@@ -260,10 +260,12 @@ function group_controller() {
             $result = $group->grouplist($session["userid"], get("name"), get("description"), get("organization"), get("area"), get("visibility"), get("access"));
         }  
       
-        // group/phpenvdebug2?name=test&description=test
-        if ($route->action == "phpenvdebug2") {
+        // group/phpenvdebugtwo?name=test&description=test
+        if ($route->action == "phpenvdebugtwo") {
             $route->format = "json";
-            $result = $group->grouplist($session["userid"], $_GET['name'], $_GET['description']);
+            echo $_GET['name'];
+            echo $_GET['description'];
+            $result = $group->grouplist($session["userid"]);
         } 
       
         // group/grouplist
