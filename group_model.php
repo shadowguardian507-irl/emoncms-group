@@ -317,7 +317,7 @@ class Group {
         // Input sanitisation
         $session_userid = (int) $session_userid;
         $feedid = (int) $feedid;
-        $subaction = preg_replace('/[^\w\s-:]/', '', $subaction);
+        $subaction = filter_var($subaction, FILTER_SANITIZE_STRING);
         // other inputs checked in following feed methods
         // Load all the groups the user has access (including users and feeds)
         $groups = $this->mygroups($session_userid);
@@ -515,7 +515,7 @@ class Group {
     // Used to enforce unique group names
     public function exists_name($group_name) {
         // Input sanitisation
-        $group_name = preg_replace('/[^\w\s-:]/', '', $group_name);
+        $group_name = $this->mysqli->real_escape_string($group_name);
 
         $stmt = $this->mysqli->prepare("SELECT * FROM groups WHERE name = ?");
         $stmt->bind_param("s", $group_name);
@@ -740,7 +740,7 @@ class Group {
         $end = (int) $end;
         $interval = (int) $interval;
         $timezone = (int) $timezone;
-        $name = preg_replace('/[^\w\s-:]/', '', $name);
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
 
         $myrole = $this->getrole($session_userid, $groupid);
         if ($myrole != 1 && $myrole != 2)
@@ -930,7 +930,7 @@ class Group {
     }
 
     public function get_groupid($group_name) {
-        $group_name = preg_replace('/[^\w\s-:]/', '', $group_name);
+        $group_name = $this->mysqli->real_escape_string($group_name);
         $stmt = $this->mysqli->prepare("SELECT id FROM groups WHERE name = ?");
         $stmt->bind_param("s", $group_name);
         if (!$stmt->execute())
@@ -1038,7 +1038,7 @@ class Group {
         // Input sanitisation
         $userid = (int) $userid;
         $groupid = (int) $groupid;
-        $feedname = preg_replace('/[^\w\s-:]/', '', $feedname);
+        $feedname = $this->mysqli->real_escape_string($feedname);
 
         // 1. Check that user is a group administrator
         if (!$this->is_group_admin($groupid, $userid))
