@@ -77,10 +77,10 @@ class Group {
         // Input sanitisation        
         $groupid = (int) $groupid;
         $admin_userid = (int) $admin_userid;
-        $name = preg_replace('/[^\w\s-:]/', '', $name);
-        $description = preg_replace('/[^\w\s-:]/', '', $description);
-        $organization = preg_replace('/[^\w\s-:]/', '', $organization);
-        $area = preg_replace('/[^\w\s-:]/', '', $area);
+        $name = $this->mysqli->real_escape_string($name);
+        $description = $this->mysqli->real_escape_string($description);
+        $organization = $this->mysqli->real_escape_string($organization);
+        $area = $this->mysqli->real_escape_string($area);
         $visibility = $visibility == 'public' ? 'public' : 'private';
         $access = $access == 'open' ? 'open' : 'closed';
 
