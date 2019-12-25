@@ -56,6 +56,13 @@ function group_controller() {
                 return view("Modules/group/group_view.php", array('task_support' => true));
         }    
       
+         // group/createdebug?name=test&description=test
+        if ($route->action == "createdebug") {
+            $route->format = "json";
+            $result = $group->create($session["userid"], $_GET['name'], $_GET['description'], $_GET['organization'], $_GET['area'], $_GET['visibility'], $_GET['access']);
+        } 
+      
+      
         // group/create?name=test&description=test
         if ($route->action == "create") {
             $route->format = "json";
@@ -253,20 +260,6 @@ function group_controller() {
     // SESSION READ
 //---------------------------
     if ($session['read']) {
-      
-        // group/phpenvdebug?name=test&description=test
-        if ($route->action == "phpenvdebug") {
-            $route->format = "json";
-            $result = $group->grouplist($session["userid"], get("name"), get("description"), get("organization"), get("area"), get("visibility"), get("access"));
-        }  
-      
-        // group/phpenvdebugtwo?name=test&description=test
-        if ($route->action == "phpenvdebugtwo") {
-            $route->format = "json";
-            echo $_GET['name'];
-            echo $_GET['description'];
-            $result = $group->grouplist($session["userid"]);
-        } 
       
         // group/grouplist
         if ($route->action == "grouplist") {
