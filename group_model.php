@@ -40,6 +40,8 @@ class Group {
 
     // Create group, add creator user as administrator
     public function create($userid, $name, $description, $organization, $area, $visibility, $access) {
+        // Debug pre sanitisation
+        echo "pre san -- name = ".$name." desc = ".$description." org = ".$organization." area = ".$area." vis = ".$visibility." access = ".$access;
         // Input sanitisation
         $userid = (int) $userid;
         $name = preg_replace('/[^\w\s-:]/', '', $name);
@@ -48,6 +50,8 @@ class Group {
         $area = preg_replace('/[^\w\s-:]/', '', $area);
         $visibility = $visibility == 'public' ? 'public' : 'private';
         $access = $access == 'open' ? 'open' : 'closed';
+        // Debug post sanitisation
+        echo "post san -- name = ".$name." desc = ".$description." org = ".$organization." area = ".$area." vis = ".$visibility." access = ".$access;
 
 
         if ($this->exists_name($name)) {
