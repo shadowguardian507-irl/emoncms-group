@@ -54,8 +54,8 @@ function group_controller() {
                 return view("Modules/group/group_view.php", array('task_support' => false));
             else
                 return view("Modules/group/group_view.php", array('task_support' => true));
-        }
-
+        }    
+      
         // group/create?name=test&description=test
         if ($route->action == "create") {
             $route->format = "json";
@@ -253,6 +253,14 @@ function group_controller() {
     // SESSION READ
 //---------------------------
     if ($session['read']) {
+      
+        // group/phpenvdebug?name=test&description=test
+        if ($route->action == "phpenvdebug") {
+            $route->format = "json"
+            $result = $group->grouplist($session["userid"], get("name"), get("description"), get("organization"), get("area"), get("visibility"), get("access"));
+        }  
+      
+      
         // group/grouplist
         if ($route->action == "grouplist") {
             $route->format = "json";
