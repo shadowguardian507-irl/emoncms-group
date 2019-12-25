@@ -318,8 +318,8 @@ class Group {
         $session_userid = (int) $session_userid;
         $feedid = (int) $feedid;
         $subaction = preg_replace('/[^\w\s-:]/', '', $subaction);
-        // other inputs checked in folloing feed methods
-        // Load all the groups the user has access (including users and feeds
+        // other inputs checked in following feed methods
+        // Load all the groups the user has access (including users and feeds)
         $groups = $this->mygroups($session_userid);
 
         // Check if feed is public
