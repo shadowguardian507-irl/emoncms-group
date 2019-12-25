@@ -261,7 +261,7 @@ function group_controller() {
         }  
       
         // group/phpenvdebug2?name=test&description=test
-        if ($route->action == "phpenvdebug") {
+        if ($route->action == "phpenvdebug2") {
             $route->format = "json";
             $result = $group->grouplist($session["userid"], $_GET['name'], $_GET[description']);
         } 
