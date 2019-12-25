@@ -40,19 +40,15 @@ class Group {
 
     // Create group, add creator user as administrator
     public function create($userid, $name, $description, $organization, $area, $visibility, $access) {
-        // Debug pre sanitisation
-        echo "pre san -- name = ".$name." desc = ".$description." org = ".$organization." area = ".$area." vis = ".$visibility." access = ".$access;
-        // Input sanitisation
+        // Input sanitisation using php integrated methods
         $userid = (int) $userid;
-        $name = preg_replace('/[^\w\s-:]/', '', $name);
-        $description = preg_replace('/[^\w\s-:]/', '', $description);
-        $organization = preg_replace('/[^\w\s-:]/', '', $organization);
-        $area = preg_replace('/[^\w\s-:]/', '', $area);
+        $name = $this->mysqli->real_escape_string($name);
+        $description = $this->mysqli->real_escape_string($description);
+        $organization = $this->mysqli->real_escape_string($organization);
+        $area = $this->mysqli->real_escape_string($area);
         $visibility = $visibility == 'public' ? 'public' : 'private';
         $access = $access == 'open' ? 'open' : 'closed';
-        // Debug post sanitisation
-        echo "post san -- name = ".$name." desc = ".$description." org = ".$organization." area = ".$area." vis = ".$visibility." access = ".$access;
-
+        
 
         if ($this->exists_name($name)) {
             $this->log->warn("Cannot create group,  already exists");
