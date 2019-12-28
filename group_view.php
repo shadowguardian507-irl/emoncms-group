@@ -12,6 +12,9 @@
   https://carbon.coop/
 
  */
+//force load of settings
+require ../../process_settings.php;
+//--
 
 defined('EMONCMS_EXEC') or die('Restricted access');
 global $path, $session, $appname;
