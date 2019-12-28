@@ -13,7 +13,7 @@
 
  */
 //force load of settings
-require ../../process_settings.php;
+require './../../process_settings.php' ;
 //--
 
 defined('EMONCMS_EXEC') or die('Restricted access');
